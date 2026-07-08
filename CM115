@@ -1,11 +1,58 @@
 <html>
-    <header>
-        Demo Practical
-    </header>
-     <main>
-        Main Articale
-     </main>
-     <footer>
+ 
+    <main>
+        <label for="CM115"></label>
+
+        <figure>
+            
+  <img
+    src="Gaming Tournament.jpg"
+    alt="Gaming Tournament" width="450" height="300"/>
+  <figcaption>GAME ON..!!</figcaption>
+</figure>
+
+<progress id="file" max="100" ></progress>
+<article class="Registration">
+  <h1>Gaming Resgistration</h1>
+  <article class="Registration">
+    <h2>25 July 2026</h2>
+    <p>Apex Legends</p>
+  </article>
+  <article class="Registration">
+    <h2>26 July 2026</h2>
+    <p>PUBG</p>
+  </article>
+  <article class="Registration">
+    <h2>27 July 2026</h2>
+    <p>Counter Strike 2</p>
+  </article>
+</article>
+<label for="Game-Select">Choose Your Game:</label>
+
+<select name="Game" id="Game-select">
+  <option value="">--Please choose an option--</option>
+  <option value="Apex Legends">Apex Legends</option>
+  <option value="PUBG">PUBG</option>
+  <option value="Counter Strike 2">Counter Strike 2</option>
+  <option value="Spectator">Spectator</option>
+</select>
+
+<form action="" method="get" class="form-example">
+  <div class="form-example">
+    <label for="name">Enter your name: </label>
+    <input type="text" name="name" id="name" required />
+  </div>
+  <div class="form-example">
+    <label for="email">Enter your email: </label>
+    <input type="email" name="email" id="email" required />
+  </div>
+  <div class="form-example">
+    <input type="submit" value="Let's Bounce..!!" />
+  </div>
+</form>
+
+    </main>
+    <footer>
         Copyright
-     </footer>
+    </footer>
 </html>
