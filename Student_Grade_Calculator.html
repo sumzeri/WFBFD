@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            width: 400px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #aaa;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            background: #e8f5e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Grade Calculator</h1>
+        <form id="gradeForm">
+            <label>Student Name</label>
+            <input type="text" id="name" required>
+
+            <label>Subject 1 Marks</label>
+            <input type="number" id="m1" min="0" max="100">
+
+            <label>Subject 2 Marks</label>
+            <input type="number" id="m2" min="0" max="100">
+
+            <label>Subject 3 Marks</label>
+            <input type="number" id="m3" min="0" max="100">
+
+            <label>Subject 4 Marks</label>
+            <input type="number" id="m4" min="0" max="100">
+
+            <label>Subject 5 Marks</label>
+            <input type="number" id="m5" min="0" max="100">
+
+            <button type="submit">Calculate Result</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("gradeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let m1 = parseFloat(document.getElementById("m1").value);
+            let m2 = parseFloat(document.getElementById("m2").value);
+            let m3 = parseFloat(document.getElementById("m3").value);
+            let m4 = parseFloat(document.getElementById("m4").value);
+            let m5 = parseFloat(document.getElementById("m5").value);
+
+            let marks = [m1, m2, m3, m4, m5];
+
+            for (let mark of marks) {
+                if (isNaN(mark) || mark < 0 || mark > 100) {
+                    alert("Please enter valid marks between 0 and 100.");
+                    return;
+                }
+            }
+
+            let total = m1 + m2 + m3 + m4 + m5;
+            let percentage = (total / 500) * 100;
+            let grade;
+
+            if (percentage >= 90) {
+                grade = "A+";
+            } else if (percentage >= 80) {
+                grade = "A";
+            } else if (percentage >= 70) {
+                grade = "B";
+            } else if (percentage >= 60) {
+                grade = "C";
+            } else if (percentage >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            let status = percentage >= 40 ? "PASS" : "FAIL";
+
+            document.getElementById("result").innerHTML =
+                "<h2>Result</h2>" +
+                "<p><b>Name:</b> " + name + "</p>" +
+                "<p><b>Total Marks:</b> " + total + " / 500</p>" +
+                "<p><b>Percentage:</b> " + percentage.toFixed(2) + "%</p>" +
+                "<p><b>Grade:</b> " + grade + "</p>" +
+                "<p><b>Status:</b> " + status + "</p>";
+        });
+    </script>
+</body>
+</html>
