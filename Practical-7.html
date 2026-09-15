@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College FAQ Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        .faq {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        .question {
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .question:hover {
+            background: #f8fafc;
+        }
+        .question::after {
+            content: "+";
+            font-size: 24px;
+        }
+        .question.active::after {
+            content: "-";
+        }
+        .answer {
+            display: none;
+            padding: 0 20px 20px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        .answer.active {
+            display: block;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 25px 15px;
+            }
+            .question {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>College Help Portal</h1>
+        <p class="subtitle">Frequently Asked Questions</p>
+        <div class="faq">
+            <div class="question">What are the college working hours?</div>
+            <div class="answer">
+                The college generally operates from 9:00 AM to 5:00 PM on working days.
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question">How can I access the college library?</div>
+            <div class="answer">
+                Students can access the library using their valid college identity card during library hours.
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question">Where can I check my examination timetable?</div>
+            <div class="answer">
+                The examination timetable is available on the college notice board and official student portal.
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question">How can I contact the department?</div>
+            <div class="answer">
+                Students can contact the department office or use the official department email address.
+            </div>
+        </div>
+        <div class="faq">
+            <div class="question">How can I apply for a leave?</div>
+            <div class="answer">
+                Students can submit a leave application to their class teacher or through the college portal if available.
+            </div>
+        </div>
+    </div>
+    <script>
+        const questions = document.querySelectorAll(".question");
+        questions.forEach(function(question) {
+            question.addEventListener("click", function() {
+                const answer = question.nextElementSibling;
+
+                question.classList.toggle("active");
+                answer.classList.toggle("active");
+            });
+        });
+    </script></body></html>
