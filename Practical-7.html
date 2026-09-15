@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College FAQ Portal</title>
+    <title>College Help Portal</title>
     <style>
         * {
             box-sizing: border-box;
@@ -12,33 +12,39 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background: #f2f5f9;
-            padding: 40px 20px;
+            background: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+        header {
+            background: #ffffff;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        header h1 {
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        header p {
+            color: #64748b;
         }
         .container {
             max-width: 800px;
-            margin: auto;
-        }
-        h1 {
-            text-align: center;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 30px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
         .faq {
-            background: white;
+            background: #ffffff;
             margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         .question {
             padding: 20px;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             color: #1e293b;
             cursor: pointer;
@@ -47,77 +53,110 @@
             align-items: center;
         }
         .question:hover {
-            background: #f8fafc;
+            background: #eff6ff;
+            color: #2563eb;
         }
         .question::after {
             content: "+";
             font-size: 24px;
+            color: #2563eb;
+        }
+        .question.active {
+            background: #eff6ff;
+            color: #2563eb;
         }
         .question.active::after {
-            content: "-";
+            content: "−";
         }
         .answer {
             display: none;
             padding: 0 20px 20px;
-            color: #475569;
+            color: #64748b;
             line-height: 1.6;
+            background: #ffffff;
         }
         .answer.active {
             display: block;
         }
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            font-size: 14px;
+        }
         @media (max-width: 600px) {
-            body {
-                padding: 25px 15px;
+            .container {
+                margin: 25px auto;
             }
             .question {
-                font-size: 16px;
+                font-size: 15px;
+                padding: 17px;
+            }
+            .answer {
+                padding: 0 17px 17px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>College Help Portal</h1>
-        <p class="subtitle">Frequently Asked Questions</p>
+        <p>Frequently Asked Questions</p>
+    </header>
+    <main class="container">
         <div class="faq">
-            <div class="question">What are the college working hours?</div>
+            <div class="question">
+                What are the college working hours?
+            </div>
             <div class="answer">
                 The college generally operates from 9:00 AM to 5:00 PM on working days.
             </div>
         </div>
         <div class="faq">
-            <div class="question">How can I access the college library?</div>
+            <div class="question">
+                How can I access the college library?
+            </div>
             <div class="answer">
                 Students can access the library using their valid college identity card during library hours.
             </div>
         </div>
         <div class="faq">
-            <div class="question">Where can I check my examination timetable?</div>
+            <div class="question">
+                Where can I check my examination timetable?
+            </div>
             <div class="answer">
                 The examination timetable is available on the college notice board and official student portal.
             </div>
         </div>
         <div class="faq">
-            <div class="question">How can I contact the department?</div>
+            <div class="question">
+                How can I contact the department?
+            </div>
             <div class="answer">
                 Students can contact the department office or use the official department email address.
             </div>
         </div>
         <div class="faq">
-            <div class="question">How can I apply for a leave?</div>
+            <div class="question">
+                How can I apply for a leave?
+            </div>
             <div class="answer">
                 Students can submit a leave application to their class teacher or through the college portal if available.
             </div>
         </div>
-    </div>
+    </main>
+    <footer>
+        © 2026 College Help Portal
+    </footer>
     <script>
         const questions = document.querySelectorAll(".question");
         questions.forEach(function(question) {
             question.addEventListener("click", function() {
                 const answer = question.nextElementSibling;
-
                 question.classList.toggle("active");
                 answer.classList.toggle("active");
             });
         });
-    </script></body></html>
+    </script>
+</body>
+</html>
