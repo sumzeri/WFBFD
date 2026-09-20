@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Routine Planner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-indigo-600 text-white text-center p-6">
+    <h1 class="text-3xl font-bold">Digital Workout Planner</h1>
+    <p class="mt-1">Build your own workout routine</p>
+  </header>
+  <main class="max-w-3xl mx-auto p-5">
+    <section class="bg-white p-5 rounded-xl shadow mb-5">
+      <h2 class="text-xl font-bold mb-4">Add Exercise</h2>
+      <div class="grid md:grid-cols-3 gap-3">
+        <input id="exercise" type="text" placeholder="Exercise name"
+          class="border p-3 rounded-lg">
+        <input id="sets" type="number" placeholder="Sets"
+          class="border p-3 rounded-lg">
+        <input id="reps" type="number" placeholder="Reps"
+          class="border p-3 rounded-lg">
+      </div>
+      <button onclick="addExercise()"
+        class="mt-4 bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700">
+        Add Exercise
+      </button>
+    </section>
+    <section class="bg-white p-5 rounded-xl shadow">
+      <h2 class="text-xl font-bold mb-4">My Workout</h2>
+      <div id="workoutList" class="space-y-3">
+        <p id="empty" class="text-gray-500">No exercises added yet.</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    function addExercise() {
+      let exercise = document.getElementById("exercise").value;
+      let sets = document.getElementById("sets").value;
+      let reps = document.getElementById("reps").value;
+      let list = document.getElementById("workoutList");
+      if (exercise === "" || sets === "" || reps === "") {
+        alert("Please fill all fields");
+        return;
+      }
+      document.getElementById("empty")?.remove();
+      let item = document.createElement("div");
+      item.className = "flex justify-between items-center bg-indigo-50 p-4 rounded-lg";
+      item.innerHTML = `
+        <div>
+          <h3 class="font-bold">${exercise}</h3>
+          <p class="text-gray-600">${sets} Sets × ${reps} Reps</p>
+        </div>
+        <button onclick="this.parentElement.remove()"
+          class="bg-red-500 text-white px-3 py-1 rounded-lg">
+          Remove
+        </button>
+      `;
+      list.appendChild(item);
+      document.getElementById("exercise").value = "";
+      document.getElementById("sets").value = "";
+      document.getElementById("reps").value = "";
+    }
+  </script>
+</body>
+</html>
