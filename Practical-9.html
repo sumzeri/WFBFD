@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-blue-600 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Personal To-Do List</h1>
+        <p class="mt-2">Organize your daily academic and personal tasks</p>
+    </header>
+    <main class="max-w-2xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-5">
+                Add Task
+            </h2>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="Enter your task..."
+                    class="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                <button
+                    onclick="addTask()"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                >
+                    Add Task
+                </button>
+            </div>
+            <div class="flex justify-between items-center mt-6 mb-3">
+                <h2 class="text-xl font-semibold text-gray-800">
+                    My Tasks
+                </h2>
+                <span
+                    id="taskCount"
+                    class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm"
+                >
+                    0 Tasks
+                </span>
+            </div>
+            <ul id="taskList" class="space-y-3"></ul>
+            <p id="emptyMessage" class="text-center text-gray-500 py-6">
+                No tasks added yet.
+            </p>
+        </div>
+    </main>
+    <footer class="text-center text-gray-500 py-6">
+        <p>Personal To-Do List &copy; 2026</p>
+    </footer>
+    <script>
+        const taskInput = document.getElementById("taskInput");
+        const taskList = document.getElementById("taskList");
+        const taskCount = document.getElementById("taskCount");
+        const emptyMessage = document.getElementById("emptyMessage");
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+            const li = document.createElement("li");
+            li.className = "flex items-center justify-between bg-gray-50 border border-gray-200 rounded-lg p-4";
+            const leftDiv = document.createElement("div");
+            leftDiv.className = "flex items-center gap-3";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.className = "w-5 h-5";
+            const span = document.createElement("span");
+            span.textContent = taskText;
+            span.className = "task-text text-gray-700";
+            checkbox.addEventListener("change", function() {
+                span.classList.toggle("line-through");
+                span.classList.toggle("text-gray-400");
+            });
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "bg-red-500 text-white px-3 py-2 rounded-lg hover:bg-red-600";
+            deleteButton.addEventListener("click", function() {
+                li.remove();
+                updateTaskCount();
+            });
+            leftDiv.appendChild(checkbox);
+            leftDiv.appendChild(span);
+            li.appendChild(leftDiv);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+            taskInput.value = "";
+            updateTaskCount();
+        }
+        function updateTaskCount() {
+            const count = taskList.children.length;
+            taskCount.textContent =
+                count + (count === 1 ? " Task" : " Tasks");
+            if (count === 0) {
+                emptyMessage.classList.remove("hidden");
+            } else {
+                emptyMessage.classList.add("hidden");
+            }
+        }
+        taskInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>
